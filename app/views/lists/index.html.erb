@@ -1,7 +1,23 @@
-<h1>Lists#index</h1>
-<p>Find me in app/views/lists/index.html.erb</p>
+<div class="section-header">
+  <div class="container">
+    <div>
+      <h1>Save any kind of movies</h1>
+    </div>
+  </div>
+</div>
 
-
-<% @lists.each do |list| %>
-  <%= list.name %>
-<% end %>
+<div class="section-lists m-5">
+  <div class="container">
+    <div class="d-flex justify-content-between">
+      <h2>My lists</h2>
+      <%= link_to "Create a list", lists_new_path, class: "btn btn-flat"  %>
+    </div>
+    <% @lists.each do |list| %>
+      <%= link_to list_path(list), class:"text-decoration-none" do %>
+        <div class="card-category mt-3" style='background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path("list_background.jpg") %>)'>
+          <%= list.name %>
+        </div>
+      <% end %>  
+    <% end %>
+  </div>
+</div>
