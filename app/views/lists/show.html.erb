@@ -1,7 +1,42 @@
-<div class="section-header" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('list_background.jpg') %>);">
+<div class="section-header position-relative" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('list_background.jpg') %>);">
   <div class="container">
+    <% if @list.movies.size > 0 %>
+      <div class="movie-tag">
+        <%= pluralize(@list.movies.size, 'movie') %>
+      </div>
+    <% end %>
     <div>
       <h1><%= @list.name %></h1>
     </div>
   </div>
 </div>
+<div class="section-bookmarks">
+  <div class="container">
+    <%# button modal Add a new Bookmark %>
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-success text-light my-3" data-bs-toggle="modal" data-bs-target="#newBookmarkModal">
+        add a movie
+      </button>   
+    </div>
+    <%# list de bookmarks %>
+    <div>
+      <% @list.movies.each do |movie| %>
+        <div class="card-trip">
+          <img src="<%= movie.poster_url %>" />
+          
+          <div class="card-trip-infos">
+            <div>
+              <h2><%= movie.title %></h2>
+              <p><%= movie.overview %></p>
+            </div>
+            <h2 class="card-trip-pricing">£99.99</h2>
+            <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%# render modal new Bookmark %>
+<%= render 'bookmarks/modal', list: @list, bookmark: @bookmark %>
