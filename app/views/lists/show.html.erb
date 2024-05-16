@@ -32,7 +32,7 @@
               </div>
               <p><%= movie.overview %></p>
             </div>
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between mt-auto">
               <p class="fw-bold"><%= bookmark.comment %></p>
               <p><%= link_to "Delete", bookmark_path(bookmark), class:"text-danger text-decoration-none", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></p>
             </div>
