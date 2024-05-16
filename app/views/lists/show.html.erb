@@ -19,18 +19,23 @@
       </button>   
     </div>
     <%# list de bookmarks %>
-    <div>
+    <div class="grid-bookmarks">
       <% @list.movies.each do |movie| %>
+        <% bookmark = Bookmark.find_by(movie: movie, list: @list) %>
         <div class="card-trip">
           <img src="<%= movie.poster_url %>" />
           
           <div class="card-trip-infos">
             <div>
-              <h2><%= movie.title %></h2>
+              <div class="d-flex gap-2 align-items-center">
+                <h2><%= movie.title %> . <%= movie.rating %><i class="fa-solid fa-star" style="color: #F3D203;"></i></h2>
+              </div>
               <p><%= movie.overview %></p>
             </div>
-            <h2 class="card-trip-pricing">£99.99</h2>
-            <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+            <div class="d-flex justify-content-between">
+              <p class="fw-bold"><%= bookmark.comment %></p>
+              <p><%= link_to "Delete", bookmark_path(bookmark), class:"text-danger text-decoration-none", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></p>
+            </div>
           </div>
         </div>
       <% end %>
