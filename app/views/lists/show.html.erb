@@ -40,8 +40,41 @@
         </div>
       <% end %>
     </div>
+    <hr class="my-5">
+  </div>
+</div>
+
+<div class="section-reviews">
+  <h2>Reviews</h2>
+  <div class="d-flex">
+    <div>
+      <% @list.reviews.each do |review| %>
+        <div class="card-review">
+          <p><%= review.comment %></p>
+          <p><%= review.rating %></p>
+        </div>
+      <% end %>
+    </div>
+    <div>
+      <%= simple_form_for [@list, @review] do |f| %>
+        <div class="form-group">
+          <%= f.input :comment, label: false, placeholder: "Write a review", input_html: { class: "form-control" } %>
+        </div>
+        <div>
+          <%= f.input :rating, collection: 1..5, label: false, input_html: { class: "form-control" } %>
+        </div>
+        <div class="form-group">
+          <%= f.button :submit, "Post", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 
 <%# render modal new Bookmark %>
 <%= render 'bookmarks/modal', list: @list, bookmark: @bookmark %>
+
+
+
+
+
