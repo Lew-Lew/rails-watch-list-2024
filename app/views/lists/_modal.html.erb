@@ -8,6 +8,7 @@
       <div class="modal-body">
         <%= simple_form_for list do |f| %>
           <%= f.input :name %>
+          <%= f.input :photo, as: :file %>
           <%= f.button :submit, 'add a list', class: 'btn btn-primary' %>
         <% end %>
       </div>
